@@ -12,20 +12,19 @@
       <button @click="handleLogin">Login</button>
     </div>
   </template>
-  
+
   <script setup lang="ts">
   import { ref } from 'vue';
   import { useAdminStore } from '../app/store/for-admin-page/main';
-  
   const store = useAdminStore();
   const password = ref('');
-  
+    
   const handleLogin = () => {
-    if (password.value === 'admin') {
-      store.loginAsAdmin();
-    } else {
-      alert('Wrong password');
-    }
-  };
+  if (password.value === import.meta.env.VITE_ADMIN_PASSWORD) {
+    store.loginAsAdmin();
+  } else {
+    alert('Wrong password');
+  }
+};
   </script>
   
