@@ -59,3 +59,30 @@ export const isStaingeFlush = (cards: Array<any>) => {
     return false
   }
 }
+export const groupByRank = (cards: Array<any>) => {
+  const grouped: { [key: string]: number } = {};
+  cards.forEach(card => {
+    const rank = card.rank;
+    grouped[rank] = (grouped[rank] || 0) + 1;
+  });
+  return grouped;
+};
+export const countPairs = (cards: Array<any>) => {
+  const grouped = groupByRank(cards);  
+  
+  
+  const pairCount = Object.values(grouped).filter(count => count === 2).length;
+  
+  return pairCount;  
+};
+export const isFullHouse = (cards: Array<any>) => {
+  const grouped = groupByRank(cards);
+
+  const counts = Object.values(grouped);
+
+  const hasThree = counts.includes(3);
+  const hasTwo = counts.includes(2);
+
+  return hasThree && hasTwo;
+};
+
