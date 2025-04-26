@@ -6,7 +6,7 @@ export type CardRank =
   export interface Card {
     suit: CardSuit;
     rank: CardRank;
-    value: number; 
-    id: string;   
+    id: string;
+    stateUse: boolean;
   }
   
