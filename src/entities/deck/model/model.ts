@@ -1,7 +1,7 @@
 // chatgpt thanks
 import { Card, CardRank, CardSuit } from './types'; 
 
-export class Deck {
+export default class Deck {
   private deck: Card[] = [];
 
   private readonly suits: CardSuit[] = ['hearts', 'diamonds', 'clubs', 'spades'];
@@ -19,14 +19,15 @@ export class Deck {
         this.deck.push({
           suit,
           rank,
-          id: `${rank}-of-${suit}`,
          stateUse: false,
+         path: `${suit}-hearth.webp`
         });
       }
     }
+    this.shuffle()
   }
 
-  public shuffle(): this {
+  private shuffle(): this {
     let m = this.deck.length, i;
     while (m) {
       i = Math.floor(Math.random() * m--);
