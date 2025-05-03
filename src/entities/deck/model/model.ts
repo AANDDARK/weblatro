@@ -20,7 +20,7 @@ export default class Deck {
           suit,
           rank,
          stateUse: false,
-         path: `${suit}-hearth.webp`
+         path: `${rank.toLowerCase()}-hearth.webp`
         });
       }
     }
@@ -40,7 +40,7 @@ export default class Deck {
     return this.deck.splice(-count).reverse();
   }
 
-  public getCards(): Card[] {
+  public  getCards(): Card[] {
     return [...this.deck];
   }
 }

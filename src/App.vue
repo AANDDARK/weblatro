@@ -9,9 +9,11 @@ const hand = new Hand(deck.getCards());
 
 
 const handCards = ref(hand.handCards.slice(0, 8));  
+console.log(hand.handCards[0].path)
 </script>
 
 <template>
+<div class="flex">
   <Card
     v-for="(card, index) in handCards"
     :key="index"
@@ -20,7 +22,9 @@ const handCards = ref(hand.handCards.slice(0, 8));
       card.stateUse = !card.stateUse;
       console.log(handCards);
     }"
+    class=""
   />
+</div>
   <hr />
   <span><button @click="console.log(toCount(hand.getUsed()))">caluculte</button></span>
 </template>
