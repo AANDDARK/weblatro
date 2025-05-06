@@ -40,7 +40,13 @@ export default class Deck {
     return this.deck.splice(-count).reverse();
   }
 
-  public  getCards(): Card[] {
+  public getCards(): Card[] {
+    return [...this.deck.slice(0, 8)];
+  }
+
+  public  getCardsGlobal(): Card[] {
     return [...this.deck];
   }
+
+
 }

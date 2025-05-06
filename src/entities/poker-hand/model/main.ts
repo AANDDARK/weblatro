@@ -5,16 +5,14 @@ import { Card } from "../../deck/model/types"
 export default class Hand{
    public handCards: Array<Card>;
     constructor(initialCards: Array<Card> = []) {
-        this.handCards = initialCards;
-    }
-    public getUsed(){
-        return this.handCards.filter((e) => e.stateUse == true)
+        this.handCards = initialCards.slice(0, 8);
     }
     public useCard(){
         const store = useCountStore()
         const temp = this.handCards.filter((card) => card.stateUse === true);
+        if(temp.length > 5) throw new Error
         store.$patch({count: toCount(temp)})
-        this.handCards = this.handCards.filter((e) => e.stateUse !==  true);
+        this.handCards = this.handCards.filter(card => !card.stateUse);
     }
     public changeCardState(card: Card){
         if(card.stateUse == false){
