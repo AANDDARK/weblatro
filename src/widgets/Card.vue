@@ -12,7 +12,6 @@
 <style>
   #card{
     width: 250px;
-    image-rendering: ;
     image-rendering: pixelated;
   }
 </style>

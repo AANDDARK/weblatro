@@ -7,6 +7,9 @@ export default class Hand{
     constructor(initialCards: Array<Card> = []) {
         this.handCards = initialCards.slice(0, 8);
     }
+    public rejectCard(){
+        this.handCards = this.handCards.filter((card) => card.stateUse == false);
+    }
     public useCard(){
         const store = useCountStore()
         const temp = this.handCards.filter((card) => card.stateUse === true);
