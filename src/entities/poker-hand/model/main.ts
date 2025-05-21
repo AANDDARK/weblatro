@@ -15,7 +15,10 @@ export default class Hand{
         const temp = this.handCards.filter((card) => card.stateUse === true);
         if(temp.length > 5) throw new Error
         store.$patch({count: toCount(temp)})
-        this.handCards = this.handCards.filter(card => !card.stateUse);
+         this.handCards = this.handCards.filter((card) => card.stateUse = false ); 
+        this.handCards.forEach(card => {
+            card.stateUse = false;
+          });
     }
     public changeCardState(card: Card){
         if(card.stateUse == false){

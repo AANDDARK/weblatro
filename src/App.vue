@@ -1,19 +1,21 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import Card from './widgets/Card.vue'; 
 import Deck from './entities/deck/model/model'
 import Hand from './entities/poker-hand/model/main'
 import Overplay from './widgets/Overplay.vue'
 import { useGameProcStore } from './app/store/gameProc/main';
 import { useCountStore } from './app/store/count/main';
+import { storeToRefs } from 'pinia';
+
 const deck = new Deck(); 
 const hand = new Hand(deck.getCards());
 const error = ref(false)
-const handCardsElement = ref(hand.handCards);  
+const handCardsElement = reactive(hand.handCards);  
 const gameProcStore = useGameProcStore();
 const isGameStarted = ref(false);
 const countStore = useCountStore();
-const count = ref(countStore.count)
+const count = storeToRefs(countStore)
 
 const startGame = () => {
   isGameStarted.value = true;
@@ -23,12 +25,15 @@ const startGame = () => {
 const calc = () => {
   try{
     hand.useCard()
+    console.log('i work normal')
     let cards = deck.draw(8 - hand.handCards.length)
+    console.log('i work normal')
     cards.forEach(card => {
       hand.handCards.push(card)
     })
+    console.log('i work normal')
     gameProcStore.nextPlay()
-    handCardsElement.value = hand.handCards
+    console.log('i work normal')
   } catch{
       error.value = true;
   }
@@ -85,7 +90,7 @@ const rejectCard = () => {
       </div>
     </div>
     <hr />
-    <span>Count now: {{ count }}</span>
+    <span>Count now: {{ count.count }}</span>
     <span v-if="error" class="bg-red-500">Too many used cards. Maximum allowed is 5.</span>
     <span v-if="gameProcStore.playCount === 0" class="bg-yellow-500 p-2 rounded">Game Over! 🎮</span>
   </div>
